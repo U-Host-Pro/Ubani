@@ -188,7 +188,7 @@ textarea,
 select {
   @apply border border-gray-300 rounded-lg px-4 py-2;
   @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
-  @apply font-base transition-colors;
+  @apply text-base transition-colors;
   /* Performance: Use containment for form elements */
   contain: layout style paint;
 }
