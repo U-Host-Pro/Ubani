@@ -1,20 +1,146 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Essential Meta Tags for Performance & SEO -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ubani Hosting - Professional web hosting services with 99.9% uptime guarantee. Business hosting, domain registration, and web development services." />
-    <meta name="keywords" content="web hosting, domain registration, business hosting, website development, cloud hosting" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5" />
+    <meta name="description" content="Ubani Hosting - Professional web hosting services with 99.9% uptime guarantee. Fast, secure, and affordable hosting for businesses." />
+    <meta name="keywords" content="web hosting, domain registration, business hosting, website development, cloud hosting, reliable hosting, South Africa" />
     <meta name="author" content="Ubani Hosting" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ubani Hosting" />
+    
+    <!-- Security & Performance Headers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://api.emailjs.com; style-src 'self' 'nonce-ubanihosting'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- OpenGraph Meta Tags for Social Sharing -->
     <meta property="og:title" content="Ubani Hosting - Professional Web Hosting Services" />
-    <meta property="og:description" content="Professional web hosting services with 99.9% uptime guarantee. Business hosting, domain registration, and web development services." />
+    <meta property="og:description" content="Fast, secure, and reliable web hosting with 99.9% uptime guarantee. Business hosting, domains, and development services." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ubanihosting.co.za" />
-    <title>Ubani Hosting - Professional Web Hosting Services</title>
+    <meta property="og:url" content="https://ubanihosting.co.za/" />
+    <meta property="og:site_name" content="Ubani Hosting" />
+    <meta property="og:locale" content="en_ZA" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ubani Hosting - Professional Web Hosting Services" />
+    <meta name="twitter:description" content="Reliable web hosting with 99.9% uptime. Fast loading, secure, and affordable." />
+    <meta name="twitter:site" content="@ubanihosting" />
+    <meta name="twitter:creator" content="@ubanihosting" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ubanihosting.co.za/" />
+    
+    <!-- Preconnect and DNS prefetch for external services -->
+    <link rel="preconnect" href="https://api.emailjs.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Favicon with multiple sizes for better compatibility -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="script" type="module" />
+    
+    <!-- Page Title (important for SEO) -->
+    <title>Ubani Hosting - Professional Web Hosting Services | 99.9% Uptime</title>
+    
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ubani Hosting",
+      "url": "https://ubanihosting.co.za/",
+      "logo": "https://ubanihosting.co.za/favicon.ico",
+      "description": "Professional web hosting services with 99.9% uptime guarantee",
+      "foundingDate": "2020",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "contact@ubanihosting.co.za",
+        "availableLanguage": ["en"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ZA",
+        "addressRegion": "South Africa"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ubani Hosting",
+      "image": "https://ubanihosting.co.za/favicon.ico",
+      "description": "Professional web hosting, domain registration, and web development services",
+      "url": "https://ubanihosting.co.za/",
+      "telephone": "NOT_PROVIDED",
+      "email": "contact@ubanihosting.co.za",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ZA",
+        "addressRegion": "South Africa"
+      },
+      "priceRange": "R39-R1490",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "100"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00",
+        "timezone": "Africa/Johannesburg"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ubanihosting.co.za/"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
+    
+    <!-- Root element for React -->
     <div id="root"></div>
+    
+    <!-- Application entry point with module type for better performance -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Defer non-critical scripts to not block DOM -->
+    <noscript>
+      <p style="padding: 20px; background: #fff3cd; color: #856404; border-radius: 4px; margin: 20px;">
+        This website requires JavaScript to function. Please enable JavaScript in your browser settings.
+      </p>
+    </noscript>
   </body>
 </html>

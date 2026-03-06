@@ -1,0 +1,86 @@
+# Security & Performance Headers for Cloudflare Pages
+# Enhanced for improved security, performance, and SEO
+
+/*
+  # Cache Control - General default
+  Cache-Control: public, max-age=0, must-revalidate
+  
+  # Security Headers
+  # Prevent XSS attacks by instructing browser not to sniff content type
+  X-Content-Type-Options: nosniff
+  # Prevent clickjacking attacks - do not allow embedding in iframes
+  X-Frame-Options: DENY
+  # Prevent MIME type sniffing
+  X-XSS-Protection: 1; mode=block
+  # Referrer Policy for privacy
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Content Security Policy - strict policy for XSS prevention
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://api.emailjs.com; style-src 'self' 'nonce-ubanihosting'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
+  # Enable HSTS (HTTPS only) for 1 year
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # Permissions Policy - disable unnecessary features
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+
+# Preload headers for performance
+/*
+  Link: </fonts/Inter.woff2>; rel=preload; as=font; type=font/woff2; crossorigin
+
+# Cache static assets for long term (1 year)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  ETag: W/"ubani-static"
+
+# Cache JavaScript bundles (1 year - these have hashes in filenames)
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS (1 year - these have hashes in filenames)
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache font files (1 year)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Cache images with moderate TTL (1 week)
+/images/*
+  Cache-Control: public, max-age=604800
+  ETag: W/"ubani-images"
+
+# HTML files - short cache (1 hour)
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: text/html; charset=utf-8
+
+# Very short cache for dynamic API responses
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
+  Content-Type: application/json; charset=utf-8
+
+# Don't cache robots.txt and sitemap (revalidate daily)
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+
+/sitemap.xml
+  Cache-Control: public, max-age=604800
+  Content-Type: application/xml; charset=utf-8
+
+# Manifest file
+/manifest.json
+  Cache-Control: public, max-age=604800
+  Content-Type: application/manifest+json; charset=utf-8
+  Vary: Accept-Encoding
+
+# Service Worker - no cache
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate, max-age=0
+  Content-Type: application/javascript; charset=utf-8
+
+# Compression headers
+/*
+  Content-Encoding: gzip
+  Vary: Accept-Encoding

@@ -1,0 +1,25 @@
+# Robots.txt for Ubani Hosting - SEO Optimization
+# Allows search engines to crawl the site efficiently
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemaps for search engine discovery
+Sitemap: https://ubanihosting.co.za/sitemap.xml
+
+# Crawl delay recommendation (in seconds)
+Crawl-delay: 1
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

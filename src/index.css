@@ -1,10 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Performance: Optimize font loading with font-display swap for FOUT */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* Accessibility: Ensure smooth scrolling behavior */
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Performance: Reduce repaints and reflows */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   body {
@@ -13,19 +25,176 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Accessibility: Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  }
+
+  /* Accessibility: Improve focus states for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid theme('colors.blue.600');
+    outline-offset: 2px;
+  }
+
+  /* Performance: Reduce layout shift with prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
+  /* Performance: Primary button with optimized transitions */
   .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+    /* Accessibility: Add focus state for keyboard users */
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    /* Performance: Use transform for smoother animations */
+    @apply active:scale-95 transition-transform;
+    /* Accessibility: Ensure sufficient touch target size (48x48px minimum) */
+    min-height: 44px;
+    min-width: 44px;
   }
-  
+
   .btn-secondary {
     @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    @apply active:scale-95 transition-transform;
+    min-height: 44px;
+    min-width: 44px;
   }
-  
+
+  /* Card component with good spacing and accessibility */
   .card {
     @apply bg-white rounded-xl shadow-lg p-6 border border-gray-100;
+    /* Performance: Use will-change sparingly for static cards */
+    transition: box-shadow 0.3s ease-in-out;
   }
+
+  .card:hover {
+    @apply shadow-xl;
+  }
+
+  /* Performance: Lazy load images with blur effect */
+  .image-lazy {
+    background-size: cover;
+    background-position: center;
+    transition: filter 0.3s ease-out;
+  }
+
+  .image-lazy[data-loaded='true'] {
+    filter: blur(0);
+  }
+
+  /* Accessibility: Skip to main content link */
+  .skip-to-main {
+    @apply absolute top-0 left-0 -translate-y-full;
+    @apply focus:translate-y-0 bg-blue-600 text-white px-4 py-2 z-50 transition-transform;
+  }
+
+  /* Accessibility: Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+/* Performance: Optimize animations for Core Web Vitals */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    @apply text-gray-900;
+  }
+
+  .btn-primary {
+    @apply border-2 border-blue-600;
+  }
+}
+
+/* Performance: Optimize for dark mode if needed */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+/* Accessibility: Ensure sufficient color contrast */
+a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+@media (prefers-contrast: more) {
+  a {
+    @apply text-blue-800 font-semibold;
+  }
+}
+
+/* Form accessibility improvements */
+label {
+  @apply font-medium text-gray-700;
+  @apply block mb-2;
+}
+
+input,
+textarea,
+select {
+  @apply border border-gray-300 rounded-lg px-4 py-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply font-base transition-colors;
+  /* Performance: Use containment for form elements */
+  contain: layout style paint;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
 }
